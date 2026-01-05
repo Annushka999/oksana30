@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Юбилей Оксаны — 30 лет</title>
+    <!-- Шрифты: Элегантный для заголовков и современный для текста -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,500&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #ff4d6d; /* Яркий малиновый акцент */
+            --soft-pink: #fff5f6; /* Нежный пудровый фон */
+            --text-dark: #2d2d2d;
+        }
+
+        body {
+            margin: 0; padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--soft-pink);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Главный экран */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), 
+                        url('https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=2070') no-repeat center center/cover;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .hero h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 12vw, 5.5rem);
+            margin: 0; font-weight: 700; line-height: 1;
+        }
+
+        .hero .age-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-style: italic;
+            margin-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.5);
+            border-bottom: 1px solid rgba(255,255,255,0.5);
+            padding: 5px 40px;
+        }
+
+        .hero .date-top {
+            font-size: 1.1rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px; margin: 0 auto; padding: 60px 20px; text-align: center;
+        }
+
+        h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3rem; color: var(--accent); margin-bottom: 15px;
+        }
+
+        .divider {
+            width: 60px; height: 3px; background: var(--accent); margin: 0 auto 30px;
+        }
+
+        /* Галерея */
+        .photo-section {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin: 50px 0;
+        }
+
+        .photo-item {
+            background: white; padding: 12px;
+            box-shadow: 0 15px 35px rgba(255, 77, 109, 0.1);
+            transform: rotate(-1.5deg); transition: 0.3s;
+        }
+
+        .photo-item:nth-child(even) { transform: rotate(1.5deg); }
+
+        .photo-item img {
+            width: 100%; height: 400px; object-fit: cover; display: block;
+        }
+
+        /* Карточка с инфо */
+        .info-card {
+            background: white; border-radius: 40px 0 40px 0;
+            padding: 50px 30px; margin: 60px 0;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.04);
+            border-left: 6px solid var(--accent);
+        }
+
+        .info-row { margin: 30px 0; }
+        .info-row label {
+            display: block; text-transform: uppercase; font-size: 0.85rem;
+            letter-spacing: 3px; color: var(--accent); font-weight: 600; margin-bottom: 10px;
+        }
+        .info-row span {
+            font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 500;
+        }
+
+        /* Настроение */
+        .mood-section {
+            background-color: #fff; border: 2px dashed var(--accent);
+            padding: 40px; border-radius: 25px; margin: 60px 0;
+        }
+
+        .mood-section p {
+            font-family: 'Cormorant Garamond', serif; font-size: 1.5rem;
+            line-height: 1.5; font-style: italic; margin: 0;
+        }
+
+        /* Таймер */
+        .timer {
+            display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-top: 20px;
+        }
+        .timer-unit {
+            background: var(--accent); color: white; padding: 15px;
+            border-radius: 15px; min-width: 80px;
+        }
+        .timer-unit b { display: block; font-size: 2rem; font-family: 'Cormorant Garamond', serif; }
+
+        /* Форма подтверждения */
+        .rsvp-box {
+            background: white; padding: 40px; border-radius: 30px;
+            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.15); margin-top: 50px;
+        }
+
+        input[type="text"] {
+            width: 100%; max-width: 350px; padding: 18px;
+            border: 2px solid var(--soft-pink); border-radius: 50px;
+            font-family: 'Montserrat', sans-serif; font-size: 1rem;
+            margin-bottom: 20px; outline: none; text-align: center;
+        }
+
+        input[type="text"]:focus { border-color: var(--accent); }
+
+        .btn {
+            display: inline-block; padding: 20px 60px;
+            background-color: var(--accent); color: white;
+            text-decoration: none; border-radius: 100px;
+            font-weight: 600; font-size: 1rem; border: none;
+            cursor: pointer; transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+
+        .btn:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 77, 109, 0.4); }
+
+        #thank-you { display: none; }
+
+        footer { padding: 60px 20px; text-align: center; font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-style: italic; }
+
+        @media (max-width: 650px) {
+            .photo-section { grid-template-columns: 1fr; }
+            .hero h1 { font-size: 3.5rem; }
+            .info-row span { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <section class="hero">
+        <div class="date-top">06 февраля 2026</div>
+        <h1>Юбилей Оксаны</h1>
+        <div class="age-label">тридцать лет</div>
+    </section>
+
+    <div class="container">
+        <section>
+            <h2>Прекрасный повод</h2>
+            <div class="divider"></div>
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">
+                Друзья, приглашаю вас отпраздновать мой важный юбилей! 
+                Жду вас, чтобы вместе создать вечер, полный тепла, смеха и красоты.
+            </p>
+        </section>
+
+        <!-- Фотографии -->
+        <section class="photo-section">
+            <div class="photo-item">
+                <img src="photo1.jpg" alt="Оксана" onerror="this.src='https://images.unsplash.com/photo-1520850838646-145308b6508c?q=80&w=1974'">
+            </div>
+            <div class="photo-item">
+                <img src="photo2.jpg" alt="Оксана" onerror="this.src='https://images.unsplash.com/photo-1509319117193-57bab727e09d?q=80&w=1974'">
+            </div>
+        </section>
+
+        <!-- Информация -->
+        <section class="info-card">
+            <div class="info-row">
+                <label>Когда встречаемся</label>
+                <span>6 февраля 2026 г. в 18:00</span>
+            </div>
+            <div class="info-row">
+                <label>Где празднуем</label>
+                <span>г. Старая Русса, ресторан «Калачи»</span>
+            </div>
+            <div class="info-row">
+                <label>Dress Code</label>
+                <span>Праздничная вечерняя одежда</span>
+            </div>
+        </section>
+
+        <!-- Настроение -->
+        <section class="mood-section">
+            <p>
+                «Приходите с отличным настроением и готовностью веселиться! <br> 
+                Будем много танцевать и наслаждаться моментом. Жду вас заряженными на праздник!»
+            </p>
+        </section>
+
+        <!-- Таймер -->
+        <section>
+            <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2rem;">До торжества осталось:</h3>
+            <div class="timer">
+                <div class="timer-unit"><b id="days">00</b>дней</div>
+                <div class="timer-unit"><b id="hours">00</b>часов</div>
+                <div class="timer-unit"><b id="minutes">00</b>мин</div>
+            </div>
+        </section>
+
+        <!-- RSVP ФОРМА -->
+        <section class="rsvp-box" id="rsvp">
+            <div id="form-container">
+                <h3 style="font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; margin-bottom: 10px;">Вы придете?</h3>
+                <p style="margin-bottom: 25px; opacity: 0.7;">Напишите ваше имя, чтобы я забронировала место:</p>
+                <input type="text" id="guest-name" placeholder="Ваше Имя">
+                <br>
+                <button onclick="sendToTelegram()" class="btn">Подтвердить участие</button>
+            </div>
+            
+            <div id="thank-you">
+                <h3 style="color: var(--accent); font-family: 'Cormorant Garamond', serif; font-size: 2.5rem;">Ура!</h3>
+                <p>Оксана уже получила ваше сообщение. До встречи на юбилее!</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>С любовью, Оксана</footer>
+
+    <script>
+        // 1. Таймер
+        const countDownDate = new Date("Feb 6, 2026 18:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            document.getElementById("days").innerHTML = Math.floor(distance / (1000 * 60 * 60 * 24));
+            document.getElementById("hours").innerHTML = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            document.getElementById("minutes").innerHTML = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        }, 1000);
+
+        // 2. Функция отправки в Telegram
+        function sendToTelegram() {
+            const name = document.getElementById('guest-name').value;
+            
+            // ВСТАВЬТЕ СЮДА ВАШ ТОКЕН ОТ @BotFather
+            const token = '8394182206:AAFkPkhrmvsqvtHLMRe0TyK2edKuMKg9g4E'; 
+            const chat_id = '1194812052';
+
+            if (name.trim() === "") {
+                alert("Пожалуйста, введите имя");
+                return;
+            }
+
+            const message = `🎉 Новое подтверждение!\n👤 Гость: ${name}\n✅ Будет на юбилее!`;
+            const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chat_id}&text=${encodeURIComponent(message)}`;
+
+            fetch(url).then(response => {
+                if (response.ok) {
+                    document.getElementById('form-container').style.display = 'none';
+                    document.getElementById('thank-you').style.display = 'block';
+                } else {
+                    alert("Ошибка. Проверьте правильность токена бота.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
